@@ -90,9 +90,29 @@ export default class Myeditor extends Component {
     textarea.style.textAlign = "right";
   }
 
-  // formFunction
-
   render() {
+    //loginfunc----
+    const loginUser = async (userInfor) => {
+      console.log(userInfor);
+      const resData = await fetch(
+        `http://localhost/apis/login.php?email=${userInfor.email}&password=${userInfor.password}`,
+        {
+          method: "GET",
+          headers: {
+            "content-Type": "application/json",
+          },
+        }
+      );
+      const jsData = await resData.json();
+      console.log(jsData.data[0]);
+      if (jsData.status === 1) {
+        this.setState({
+          show: true,
+        });
+      }
+    };
+
+    // formFunction
     const onChangeHanfle = (event) => {
       this.setState({
         userobj: {
@@ -102,9 +122,25 @@ export default class Myeditor extends Component {
       });
     };
 
+    const submitHandle = (event) => {
+      event.preventDefault();
+      if (
+        this.state.userobj.email !== "" &&
+        this.state.userobj.password !== ""
+      ) {
+        loginUser(this.state.userobj);
+        this.setState({
+          userobj: {
+            email: "",
+            password: "",
+          },
+        });
+      }
+    };
+
     return (
       <>
-        {
+        {this.state.show && (
           <main>
             <div className="container text-center my-2">
               <textarea
@@ -207,8 +243,12 @@ export default class Myeditor extends Component {
               </div>
             </div>
           </main>
-        }
-        <Login formState={this.state.userobj} changeHandle={onChangeHanfle} />
+        )}
+        <Login
+          formState={this.state.userobj}
+          changeHandle={onChangeHanfle}
+          submitHandle={submitHandle}
+        />
       </>
     );
   }
