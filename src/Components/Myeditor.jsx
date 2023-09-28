@@ -162,7 +162,7 @@ export default class Myeditor extends Component {
                 onClick={this.sentenceCase}
                 className="btn btn-outline-info"
               >
-                Sentence
+                Justify
               </button>
             </div>
             <div className="d-inline me-2">
@@ -172,7 +172,7 @@ export default class Myeditor extends Component {
                 onClick={this.textCenter}
                 className="btn btn-outline-info"
               >
-                Align center
+                text center
               </button>
             </div>
             <div className="d-inline me-2">
@@ -182,7 +182,7 @@ export default class Myeditor extends Component {
                 onClick={this.textRight}
                 className="btn btn-outline-info"
               >
-                Align Right
+                text Right
               </button>
             </div>
           </div>
