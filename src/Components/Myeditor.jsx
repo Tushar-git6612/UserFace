@@ -1,10 +1,16 @@
 import React, { Component } from "react";
+import Login from "./Login";
 
 export default class Myeditor extends Component {
   constructor() {
     super();
     this.state = {
       editorarea: "type here",
+      show: false,
+      userobj: {
+        email: "",
+        password: "",
+      },
     };
     this.editorChanger = this.editorChanger.bind(this);
     this.textUppercase = this.textUppercase.bind(this);
@@ -71,7 +77,7 @@ export default class Myeditor extends Component {
 
   sentenceCase() {
     let textarea = document.querySelector("textarea");
-    textarea.style.textAlign = "justify";  
+    textarea.style.textAlign = "justify";
   }
 
   textCenter() {
@@ -79,114 +85,130 @@ export default class Myeditor extends Component {
     textarea.style.textAlign = "center";
   }
 
-  textRight(){
-  let textarea = document.querySelector("textarea");
-  textarea.style.textAlign="right"
+  textRight() {
+    let textarea = document.querySelector("textarea");
+    textarea.style.textAlign = "right";
   }
 
+  // formFunction
+
   render() {
+    const onChangeHanfle = (event) => {
+      this.setState({
+        userobj: {
+          ...this.state.userobj,
+          [event.target.name]: event.target.value,
+        },
+      });
+    };
+
     return (
       <>
-        <div className="container text-center my-2">
-          <textarea
-            className="form-control"
-            id="textarea"
-            onChange={this.editorChanger}
-            rows="12"
-            name="editorarea"
-            value={this.state.editorarea}
-          ></textarea>
-          <div className="d-flex mt-3 btnBox">
-            <div className="d-inline me-2">
-              <button
-                type="button"
-                onClick={this.textUppercase}
-                className="btn btn-outline-info"
-              >
-                Uppercase
-              </button>
+        {
+          <main>
+            <div className="container text-center my-2">
+              <textarea
+                className="form-control"
+                id="textarea"
+                onChange={this.editorChanger}
+                rows="12"
+                name="editorarea"
+                value={this.state.editorarea}
+              ></textarea>
+              <div className="d-flex mt-3 btnBox">
+                <div className="d-inline me-2">
+                  <button
+                    type="button"
+                    onClick={this.textUppercase}
+                    className="btn btn-outline-info"
+                  >
+                    Uppercase
+                  </button>
+                </div>
+                <div className="d-inline me-2">
+                  <button
+                    type="button"
+                    onClick={this.textLowercase}
+                    className="btn btn-outline-info"
+                  >
+                    Lowercase
+                  </button>
+                </div>
+                <div className="d-inline me-2">
+                  <button
+                    type="button"
+                    onClick={this.textClear}
+                    className="btn btn-outline-info"
+                  >
+                    Clear All
+                  </button>
+                </div>
+                <div className="d-inline me-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      this.textCapitalize();
+                    }}
+                    className="btn btn-outline-info"
+                  >
+                    Capitalize
+                  </button>
+                </div>
+                <div className="d-inline me-2">
+                  <button
+                    id="copyBtn"
+                    type="button"
+                    onClick={this.copyText}
+                    className="btn btn-outline-info"
+                  >
+                    Copy
+                  </button>
+                </div>
+                <div className="d-inline me-2">
+                  <button
+                    id="copyBtn"
+                    type="button"
+                    onClick={this.boldText}
+                    className="btn btn-outline-info"
+                  >
+                    Bold
+                  </button>
+                </div>
+                <div className="d-inline me-2">
+                  <button
+                    id="copyBtn"
+                    type="button"
+                    onClick={this.sentenceCase}
+                    className="btn btn-outline-info"
+                  >
+                    Justify
+                  </button>
+                </div>
+                <div className="d-inline me-2">
+                  <button
+                    id="copyBtn"
+                    type="button"
+                    onClick={this.textCenter}
+                    className="btn btn-outline-info"
+                  >
+                    text center
+                  </button>
+                </div>
+                <div className="d-inline me-2">
+                  <button
+                    id="copyBtn"
+                    type="button"
+                    onClick={this.textRight}
+                    className="btn btn-outline-info"
+                  >
+                    text Right
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="d-inline me-2">
-              <button
-                type="button"
-                onClick={this.textLowercase}
-                className="btn btn-outline-info"
-              >
-                Lowercase
-              </button>
-            </div>
-            <div className="d-inline me-2">
-              <button
-                type="button"
-                onClick={this.textClear}
-                className="btn btn-outline-info"
-              >
-                Clear All
-              </button>
-            </div>
-            <div className="d-inline me-2">
-              <button
-                type="button"
-                onClick={() => {
-                  this.textCapitalize();
-                }}
-                className="btn btn-outline-info"
-              >
-                Capitalize
-              </button>
-            </div>
-            <div className="d-inline me-2">
-              <button
-                id="copyBtn"
-                type="button"
-                onClick={this.copyText}
-                className="btn btn-outline-info"
-              >
-                Copy
-              </button>
-            </div>
-            <div className="d-inline me-2">
-              <button
-                id="copyBtn"
-                type="button"
-                onClick={this.boldText}
-                className="btn btn-outline-info"
-              >
-                Bold
-              </button>
-            </div>
-            <div className="d-inline me-2">
-              <button
-                id="copyBtn"
-                type="button"
-                onClick={this.sentenceCase}
-                className="btn btn-outline-info"
-              >
-                Justify
-              </button>
-            </div>
-            <div className="d-inline me-2">
-              <button
-                id="copyBtn"
-                type="button"
-                onClick={this.textCenter}
-                className="btn btn-outline-info"
-              >
-                text center
-              </button>
-            </div>
-            <div className="d-inline me-2">
-              <button
-                id="copyBtn"
-                type="button"
-                onClick={this.textRight}
-                className="btn btn-outline-info"
-              >
-                text Right
-              </button>
-            </div>
-          </div>
-        </div>
+          </main>
+        }
+        <Login formState={this.state.userobj} changeHandle={onChangeHanfle} />
       </>
     );
   }
