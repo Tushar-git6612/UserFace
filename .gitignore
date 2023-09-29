@@ -9,6 +9,8 @@
 src/Components/Login.jsx
 src/reportWebVitals.js
 
+# package files
+package.json
 
 # testing
 /coverage
