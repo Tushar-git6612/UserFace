@@ -11,6 +11,8 @@ src/reportWebVitals.js
 
 # package files
 package.json
+package-lock.json
+
 
 # testing
 /coverage
