@@ -62,7 +62,7 @@ export default class Myeditor extends Component {
     });
   }
 
-  copyText(event) {
+  copyText() {
     const text = document.querySelector("#textarea");
     console.log(text);
     text.select();
