@@ -102,13 +102,20 @@ export default class Myeditor extends Component {
             "content-Type": "application/json",
           },
         }
-      );
-      const jsData = await resData.json();
-      console.log(jsData.data[0]);
-      if (jsData.status === 1) {
-        this.setState({
-          show: true,
-        });
+      )
+      .catch((error)=>{
+        console.log(error)
+      });
+      if(resData){
+        const jsData = await resData.json();
+        console.log(jsData.data[0]);
+        if (jsData.status === 1) {
+          this.setState({
+            show: true,
+          });
+        }
+      }else{
+        alert("server not found");
       }
     };
 
