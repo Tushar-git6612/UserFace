@@ -8,6 +8,7 @@
 # components 
 src/Components/Login.jsx
 src/reportWebVitals.js
+src/setupTests.js
 
 # package files
 package.json
